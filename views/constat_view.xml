@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pdca_constat_view_form" model="ir.ui.view">
+        <field name="name">pdca.constat.view.form</field>
+        <field name="model">pdca.constat</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="document" />
+                    </group>
+                    <group>
+                        <field name="name" />
+                    </group>
+                    <group>
+                        <field name="type_constat" />
+                        <field name="origine" />
+                    </group>
+                    <group>
+                        <field name="activite" />
+                        <!-- <field name="processus" /> -->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pdca_constat_view_tree" model="ir.ui.view">
+        <field name="name">pdca.constat.view.tree</field>
+        <field name="model">pdca.constat</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="document" />
+                <field name="name" />
+                <field name="type_constat" />
+                <field name="origine" />
+                <field name="direction_concerne" widget="many2onetags"/>
+                <field name="activite" />
+                <!-- <field name="processus" /> -->
+                <!-- <field name="direction_pilote" /> -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="pdca_constat_action" model="ir.actions.act_window">
+        <field name="name">Constats</field>
+        <field name="res_model">pdca.constat</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="pdca_constat_menu" name="Constat" action="pdca_constat_action"
+        parent="pdca_root_menu" sequence="40"/>
+
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pdca_unite_view_form" model="ir.ui.view">
+        <field name="name">pdca.unite.view.form</field>
+        <field name="model">pdca.unite</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="direction" />
+                        <field name="directeur" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pdca_unite_view_tree" model="ir.ui.view">
+        <field name="name">pdca.unite.view.tree</field>
+        <field name="model">pdca.unite</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="direction" />
+                <field name="directeur" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="pdca_unite_action" model="ir.actions.act_window">
+        <field name="name">Unite</field>
+        <field name="res_model">pdca.unite</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
