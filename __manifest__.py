@@ -30,6 +30,7 @@
         'views/processus_view.xml',
         'views/constat_view.xml',
         'views/templates.xml',
+        'data/mail_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

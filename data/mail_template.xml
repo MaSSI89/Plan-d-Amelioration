@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mail_creation_constat" model="mail.template">
+        <field name="name">Nouvelle Constat</field>
+        <field name="model_id" ref="pdca.pdca_constat"/>
+        <field name="subject">Welcome r lxedma </field>
+        <field name="email_from">"${user.email}</field>
+        <field name="email_to">${object.direction_concerne.directeur.email}</field>
+        <field name="body_html" type="html">
+            <p>ATAN XEDMAN AK CCGHEL</p>
+        </field>
+    </record>
+
+</odoo>

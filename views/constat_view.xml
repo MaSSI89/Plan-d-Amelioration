@@ -18,6 +18,7 @@
                         <field name="origine" />
                     </group>
                     <group>
+                        <field name="direction_concerne" />
                         <field name="activite" />
                         <!-- <field name="processus" /> -->
                     </group>
@@ -35,7 +36,7 @@
                 <field name="name" />
                 <field name="type_constat" />
                 <field name="origine" />
-                <field name="direction_concerne" widget="many2onetags"/>
+                <field name="direction_concerne" widget="many2manytags"/>
                 <field name="activite" />
                 <!-- <field name="processus" /> -->
                 <!-- <field name="direction_pilote" /> -->

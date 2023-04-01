@@ -1,9 +1,9 @@
-from odoo import fields, models
+from odoo import fields, models, api
 
 class Constat(models.Model):
     _name = "pdca.constat"
     _description = "Constats"
-
+    _inheirt = ['mail.thread', 'mail.activity.mixin']
     document = fields.Binary('DOcument:')
     name = fields.Text('Constat:')
     type_constat = fields.Selection([('fort','Point fort'),
@@ -47,4 +47,9 @@ class Constat(models.Model):
                             ('riskManagement', 'Risk management'),
                             ('conformite', 'Conformité légale'),
                             ('auditCertification', 'Audit de certification')],'Origine')
-    
+    @api.model
+    def create(self, vals):
+        record = super(Constat, self).create(vals)
+        template_id = self.env.ref('pdca.creation_constat_mail')
+        self.message_post_with_template(template_id.id)
+        return record
