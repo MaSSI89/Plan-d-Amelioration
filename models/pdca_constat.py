@@ -1,9 +1,12 @@
 from odoo import fields, models, api
+import logging
 
 class Constat(models.Model):
     _name = "pdca.constat"
     _description = "Constats"
-    _inheirt = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    
+
     document = fields.Binary('DOcument:')
     name = fields.Text('Constat:')
     type_constat = fields.Selection([('fort','Point fort'),
@@ -47,9 +50,18 @@ class Constat(models.Model):
                             ('riskManagement', 'Risk management'),
                             ('conformite', 'Conformité légale'),
                             ('auditCertification', 'Audit de certification')],'Origine')
+    
+    def send_mail_notif(self):
+        template_id = self.env.ref('pdca.creation_constat_email')
+        for rec in self:
+            template_id.send_mail(rec.id, force_send=True)
+        return
+        
+    
     @api.model
     def create(self, vals):
         record = super(Constat, self).create(vals)
-        template_id = self.env.ref('pdca.creation_constat_mail')
-        self.message_post_with_template(template_id.id)
+        record.send_mail_notif()
         return record
+    
+ 

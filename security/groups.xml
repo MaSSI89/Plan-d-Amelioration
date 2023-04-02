@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_pdca" model="res.groups">
+        <field name="name"></field>
+    </record>
+
+    <record id="group_pdca_administrateur" model="res.groups">
+        <field name="name">Administrateur</field>
+        <field name="category_id" ref="base.module_category_pdca" />
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]" />
+    </record>
+
+</odoo>

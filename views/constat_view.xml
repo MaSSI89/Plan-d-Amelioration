@@ -6,6 +6,8 @@
         <field name="model">pdca.constat</field>
         <field name="arch" type="xml">
             <form string="">
+                <header>
+                </header>
                 <sheet>
                     <group>
                         <field name="document" />
