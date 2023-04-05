@@ -9,10 +9,14 @@
                 <sheet>
                     <group>
                         <field name="name" />
-                        <field name="cree_le" />
                     </group>
                     <group >
                         <field name="directeur" />
+                        <field name="referent" />
+                        <field name="les_unites" />
+                    </group>
+                    <group >
+                        <field name="cree_le" />
                     </group>
                 </sheet>
             </form>
@@ -26,7 +30,9 @@
             <tree string="">
                 <field name="name" />
                 <field name="directeur" />
+                <field name="referent" />
                 <field name="cree_le" />
+                <field name="les_unites" />
             </tree>
         </field>
     </record>

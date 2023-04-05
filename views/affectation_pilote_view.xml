@@ -7,7 +7,9 @@
         <field name="arch" type="xml">
             <form string="">
                 <sheet>
-                    
+                    <header>
+                        <button name="pilote_creer_action" type="object" string="Creer Une Action" />
+                    </header>
                     <group>
                         <field name="constat_id" readonly="1" />
                         <field name="pilote" />

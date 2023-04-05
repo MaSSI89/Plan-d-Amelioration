@@ -7,9 +7,9 @@ class AffectationPilote(models.Model):
     pilote = fields.Many2one('res.users','Pilote')
 
 
-    def creer_constat_url(self):
+    def creer_affectation_pilote_url(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        object_url=  '/web#id=%d&action=309&model=pdca.action&view_type=form&cids=&menu_id=72' % self.id
+        object_url=  '/web#id=%d&active_id=5&model=pdca.affectation.pilote&view_type=form&cids=1&menu_id=105' % self.id
         print(base_url+object_url)
         return base_url + object_url    
 
@@ -26,13 +26,13 @@ class AffectationPilote(models.Model):
         record.send_mail_notif()
         return record
     
-    def creer_action_constat(self):
+    def pilote_creer_action(self):
           return {
                 'res_model': 'pdca.action',
                 'type': 'ir.actions.act_window',
                 'view_mode': 'form',
                 'view_id': self.env.ref('pdca.pdca_action_view_form').id,
                 'context': {
-                    'default_constat_id': self.id,
+                    'default_constat_id': self.constat_id.id,
                 }
             }

@@ -3,6 +3,6 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 acl_direction,pdca.direction,model_pdca_direction,,1,1,1,1
 acl_unite,pdca.unite default,model_pdca_unite,,1,1,1,1
 acl_processus,pdca.processus,model_pdca_processus,,1,1,1,1
-acl_constat,pdca.constat,model_pdca_constat,,1,1,1,1
+acl_constat,pdca.constat,model_pdca_constat,,1,0,1,0
 acl_action,pdca.action,model_pdca_action,,1,1,1,1
 acl_affectation_pilote,pdca.affectation.pilote,model_pdca_affectation_pilote,,1,1,1,1

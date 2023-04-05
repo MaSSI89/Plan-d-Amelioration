@@ -15,10 +15,10 @@ class Constat(models.Model):
                                      ('recommendation','Recommendation'),
                                      ('recommendation_maj','Recommendation Majeure'),
                                      ('observation','Observation')],string="Type Constat")
-    direction_concerne = fields.Many2many('pdca.direction', string="Direction Concernees")
-    activite_id = fields.Many2one('pdca.direction',string="Activite")
-    processus_id = fields.Many2one('pdca.activite',string="Processus")
-    direction_pilote = fields.Many2many('pdca.direction','id',string="Direction Pilote")
+    direction_concerne_ids = fields.Many2many('pdca.direction', string="Direction Concernees")
+    activite_id = fields.Many2one('pdca.unite',string="Activite")
+    processus_id = fields.Many2one('pdca.processus',string="Processus")
+    direction_pilote_ids = fields.Many2many('pdca.direction','id',string="Direction Pilote")
     
     origine = fields.Selection([
                             ('blanc', 'Audit à blanc'),
@@ -53,7 +53,7 @@ class Constat(models.Model):
     
     def creer_constat_url(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        constat_form_url = '/web#id=%d&action=304&model=pdca.constat&view_type=form&cids=1&menu_id=72' % self.id
+        constat_form_url = '/web#id=%d&action=123&model=pdca.constat&view_type=form&cids=1&menu_id=105' % self.id
         print(base_url+constat_form_url)
         return base_url + constat_form_url
     
@@ -73,12 +73,31 @@ class Constat(models.Model):
     
     def affecter_pilote(self):
         return {
-            'res_model': 'pdca.affecter.pilote',
+            'res_model': 'pdca.affectation.pilote',
             'type': 'ir.actions.act_window',
             'view_mode': 'form',
-            'view_id': self.env.ref('pdca.pdca_affectation_pilote_view_form').id,
+            'view_id': self.env.ref('pdca.pdca_affectation_pilote_view_form').id, 
             'context': {
                 'default_constat_id' : self.id
             }
         }
+
+    @api.onchange('direction_pilote_ids')
+    def _onchange_(self):
+        if self.direction_pilote_ids :
+            # recherche des unites de direction concernees:
+            activite_domain = [('direction_id','in',self.direction_pilote_ids.ids)]
+            print(self.direction_pilote_ids.ids)
+            return {'domain': {'activite_id': activite_domain}}
+        else:
+            self.activite_id = []
+
+    @api.onchange('activite_id')       
+    def onchange_unite_id(self):
+        if self.activite_id:
+            processus_domain = [('unite_id','=',self.activite_id.id)]
+            return {'domain': {'processus_id': processus_domain}}
+        else:
+            self.processus_id = []
+            print(self.processus_id)
  
