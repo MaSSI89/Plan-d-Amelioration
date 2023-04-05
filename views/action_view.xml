@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pdca_action_view_form" model="ir.ui.view">
+        <field name="name">pdca.action.view.form</field>
+        <field name="model">pdca.action</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <group >
+                            <field name="constat_id" readonly="1"/>
+                        </group>
+                        <group name="">
+                            <field name="action" />
+                            <field name="type_action" />
+                        </group>
+                        <group name="">
+                            <field name="cause" />
+                        </group>
+                        <group name="">
+                            <field name="risque" />
+                            <field name="type_risque" />
+                        </group>
+                        <group name="">
+                            <field name="opportunite" />
+                        </group>
+                        <group name="">
+                            <field name="moyen" />
+                            <field name="date_fin_previsionelle" />
+                        </group>
+                        <group name="">
+                            <field name="commentaire" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pdca_action_view_tree" model="ir.ui.view">
+        <field name="name">pdca.action.view.tree</field>
+        <field name="model">pdca.action</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="constat_id" />
+                <field name="action" />
+                <field name="type_action" />
+                <field name="cause" />
+                <field name="risque" />
+                <field name="type_risque" />
+                <field name="type_action" />
+                <field name="opportunite" />
+                <field name="date_fin_previsionelle" />
+                <field name="commentaire" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="pdca_action_action" model="ir.actions.act_window">
+        <field name="name">Action</field>
+        <field name="res_model">pdca.action</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="pdca_action_menu" name="Actions"
+        action="pdca_action_action" parent="pdca_root_menu"
+        sequence="50"/>
+
+</odoo>

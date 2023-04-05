@@ -7,7 +7,7 @@ class Constat(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     
 
-    document = fields.Binary('DOcument:')
+    document = fields.Binary('Document:')
     name = fields.Text('Constat:')
     type_constat = fields.Selection([('fort','Point fort'),
                                      ('progre','Piste de Progres'),
@@ -15,10 +15,10 @@ class Constat(models.Model):
                                      ('recommendation','Recommendation'),
                                      ('recommendation_maj','Recommendation Majeure'),
                                      ('observation','Observation')],string="Type Constat")
-    direction_concerne = fields.Many2one('pdca.direction', string="Direction Concernees")
-    activite = fields.Many2one('pdca.unite',string="Activite")
-    # processus = fields.One2many('pdca.processus',string="Processus")
-    # direction_pilote = fields.One2many('pdca.direction',string="Direction Pilote")
+    direction_concerne = fields.Many2many('pdca.direction', string="Direction Concernees")
+    activite_id = fields.Many2one('pdca.direction',string="Activite")
+    processus_id = fields.Many2one('pdca.activite',string="Processus")
+    direction_pilote = fields.Many2many('pdca.direction','id',string="Direction Pilote")
     
     origine = fields.Selection([
                             ('blanc', 'Audit à blanc'),
@@ -51,9 +51,16 @@ class Constat(models.Model):
                             ('conformite', 'Conformité légale'),
                             ('auditCertification', 'Audit de certification')],'Origine')
     
+    def creer_constat_url(self):
+        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        constat_form_url = '/web#id=%d&action=304&model=pdca.constat&view_type=form&cids=1&menu_id=72' % self.id
+        print(base_url+constat_form_url)
+        return base_url + constat_form_url
+    
     def send_mail_notif(self):
         template_id = self.env.ref('pdca.creation_constat_email')
         for rec in self:
+            self.creer_constat_url()
             template_id.send_mail(rec.id, force_send=True)
         return
         
@@ -64,4 +71,14 @@ class Constat(models.Model):
         record.send_mail_notif()
         return record
     
+    def affecter_pilote(self):
+        return {
+            'res_model': 'pdca.affecter.pilote',
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'view_id': self.env.ref('pdca.pdca_affectation_pilote_view_form').id,
+            'context': {
+                'default_constat_id' : self.id
+            }
+        }
  

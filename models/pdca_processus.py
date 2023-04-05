@@ -5,6 +5,6 @@ class Processus(models.Model):
     _description = "Processus d'une Unite"
 
     name = fields.Char('Nom De Processus')
-    directeur = fields.Many2one('res.partner', 'Directeur')
-    unite = fields.Many2one('pdca.unite', 'Unite :')
+    directeur_id = fields.Many2one('res.partner', 'Directeur')
+    unite_id = fields.Many2one('pdca.unite', 'Unite :')
 

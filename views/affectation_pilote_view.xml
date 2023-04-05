@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pdca_affectation_pilote_view_form" model="ir.ui.view">
+        <field name="name">pdca.affectation.pilote.view.form</field>
+        <field name="model">pdca.affectation.pilote</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    
+                    <group>
+                        <field name="constat_id" readonly="1" />
+                        <field name="pilote" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pdca_affectation_pilote_view_tree" model="ir.ui.view">
+        <field name="name">pdca.affectation.pilote.view.tree</field>
+        <field name="model">pdca.affectation.pilote</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="id" />
+                <field name="constat_id" />
+                <field name="pilote" />
+            </tree>
+        </field>
+    </record>
+    
+    <record id="pdca_affectation_pilote_action" model="ir.actions.act_window">
+        <field name="name">Affectation Pilote</field>
+        <field name="res_model">pdca.affectation.pilote</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="affectation_pilote_menu" name="Affectation Pilote"
+        action="pdca_affectation_pilote_action" parent="pdca_root_menu" />
+
+</odoo>

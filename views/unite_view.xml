@@ -9,8 +9,8 @@
                 <sheet>
                     <group>
                         <field name="name" />
-                        <field name="direction" />
-                        <field name="directeur" />
+                        <field name="direction_id" />
+                        <field name="directeur_id" />
                     </group>
                 </sheet>
             </form>
@@ -23,8 +23,8 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
-                <field name="direction" />
-                <field name="directeur" />
+                <field name="direction_id" />
+                <field name="directeur_id" />
             </tree>
         </field>
     </record>

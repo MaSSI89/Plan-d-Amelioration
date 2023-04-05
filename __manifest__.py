@@ -30,6 +30,8 @@
         'views/direction_view.xml',
         'views/processus_view.xml',
         'views/constat_view.xml',
+        'views/affectation_pilote_view.xml',
+        'views/action_view.xml',
         'views/templates.xml',
         'data/mail_template.xml',
     ],

@@ -5,5 +5,7 @@ class Unite(models.Model):
     _description = "UNite"
 
     name = fields.Char('Nom De Unite', required=True)
-    direction = fields.Many2one('pdca.direction', 'Direction')
-    directeur = fields.Many2one('res.partner', required=True)
+    directeur_id = fields.Many2one('res.partner', required=True)
+    direction_id = fields.Many2one('pdca.direction', 'Direction')
+    les_processus = fields.One2many('pdca.processus','unite_id','Processus')
+    

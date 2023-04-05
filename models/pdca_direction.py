@@ -7,4 +7,4 @@ class Direction(models.Model):
     name = fields.Char('Nom Direction:', required=True)
     cree_le = fields.Date('Date de creation') 
     directeur = fields.Many2one('res.partner','Directeur')
-    
+    les_unites = fields.One2many('pdca.unite','direction_id',string="Unites")

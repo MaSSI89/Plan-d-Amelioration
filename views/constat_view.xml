@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <form string="">
                 <header>
+                    <button name="affecter_pilote" type="object" string="Affecter Un Pilote" confirm="Affecter un Pilote ?" />
                 </header>
                 <sheet>
                     <group>
@@ -20,9 +21,10 @@
                         <field name="origine" />
                     </group>
                     <group>
-                        <field name="direction_concerne" />
-                        <field name="activite" />
-                        <!-- <field name="processus" /> -->
+                        <field name="direction_concerne" widget="many2many_tags"/>
+                        <field name="direction_pilote" widget="many2many_tags"/>
+                        <field name="activite_id" />
+                        <field name="processus_id" />
                     </group>
                 </sheet>
             </form>
@@ -38,10 +40,10 @@
                 <field name="name" />
                 <field name="type_constat" />
                 <field name="origine" />
-                <field name="direction_concerne" widget="many2manytags"/>
-                <field name="activite" />
-                <!-- <field name="processus" /> -->
-                <!-- <field name="direction_pilote" /> -->
+                <field name="direction_concerne" />
+                <field name="direction_pilote" />
+                <field name="activite_id" />
+                <field name="processus_id" />
             </tree>
         </field>
     </record>
