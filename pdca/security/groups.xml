@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_pdca_pilote" model="res.groups">
+        <field name="name">Pilote</field>
+        <field name="category_id" ref="base.module_category_pdca" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+    </record>
+
+    <record id="group_pdca_referent" model="res.groups">
+        <field name="name">Referent</field>
+        <field name="category_id" ref="base.module_category_pdca" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+    </record>
+
+    <record id="group_pdca_directeur" model="res.groups">
+        <field name="name">Directeur</field>
+        <field name="category_id" ref="base.module_category_pdca" />
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+    </record>
+
+    <record id="group_pdca_administrateur" model="res.groups">
+        <field name="name">Administrateur</field>
+        <field name="category_id" ref="base.module_category_pdca" />
+        <field name="implied_ids" eval="[(4, ref('base.user_admin'))]" />
+    </record>
+
+</odoo>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="0" >
+        <record id="creation_constat_email" model="mail.template">
+            <field name="name">Nouvelle Constat</field>
+            <field name="model_id" ref="pdca.model_pdca_constat"/>
+            <field name="subject">Nouvelle Constat </field>
+            <field name="email_from">${object.create_uid.email or user.email} </field>
+            <!-- <field name="email_to">${object.direction_pilote_ids.directeur.email},${object.direction_pilote_ids.referent.email}</field> -->
+            <field name="email_to">${object.pass_dir_pilote_emails()}</field>
+            <field name="body_html" type="html">
+                    <h3>Une Nouvelle Constat</h3>  
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tbody>     
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                        <tr><td valign="top" style="font-size: 20px;">
+                                            <div>
+                                                Bonjour <br/><br/>
+                                                Une Nouvelle Constat a ete cree vous pouvez la voire d'ici
+                                                <br/>
+                                                <div style="margin: 16px 0px 16px 0px;">
+                                                    <a href="${object.creer_constat_url()}"
+                                                        style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:25px;">
+                                                        voire le constat
+                                                    </a>
+                                                </div>
+                                               <br/><br/>
+                                                Thanks,
+                                                % if user.signature:
+                                                    <br/>
+                                                    ${user.signature | safe}
+                                                % endif
+                                            </div>
+                                        </td></tr>
+                                        <tr><td style="text-align:center;">
+                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                        </td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>         
+            </field>
+        </record>
+    
+        <record id="mail_constat_fort" model="mail.template">
+            <field name="name">Nouvelle Constat de Type point fort</field>
+            <field name="model_id" ref="pdca.model_pdca_constat"/>
+            <field name="subject">Nouvelle Constat de Type Point fort</field>
+            <field name="email_from">${object.create_uid.email or user.email} </field>
+            <field name="email_to">${object.pass_dir_pilote_emails()}</field>
+            <field name="body_html" type="html">
+                    <h3>Une Nouvelle Constat de type point fort a ete cree</h3>  
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tbody>     
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                        <tr><td valign="top" style="font-size: 20px;">
+                                            <div>
+                                                Bonjour,<br/><br/>
+                                                Une Nouvelle Constat de type point fort a ete cree vous pouvez la voire d'ici
+                                                <br/>
+                                                <div style="margin: 16px 0px 16px 0px;">
+                                                    <a href="${object.creer_constat_url()}"
+                                                        style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:25px;">
+                                                        voire le constat Fort
+                                                    </a>
+                                                </div>
+                                            <br/><br/>
+                                                Thanks,
+                                                % if user.signature:
+                                                    <br/>
+                                                    ${user.signature | safe}
+                                                % endif
+                                            </div>
+                                        </td></tr>
+                                        <tr><td style="text-align:center;">
+                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                        </td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>         
+            </field>
+        </record>
+
+        <record id="affectation_constat_email" model="mail.template">
+            <field name="name">Nouvelle Constat Affecte pour vous</field>
+            <field name="model_id" ref="pdca.model_pdca_affectation_pilote"/>
+            <field name="subject">Nouvelle Constat Affectee Pour Vous</field>
+            <field name="email_from">${object.create_uid.email or user.email} </field>
+            <field name="email_to">${object.pilote_id.email}</field>
+            <field name="body_html" type="html">
+                    <h3>Une Nouvelle Constat Affecte pour Vous</h3>  
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 16px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tbody>     
+                            <tr>
+                                <td align="center" style="min-width: 590px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;">
+                                        <tr><td valign="top" style="font-size: 20px;">
+                                            <div>
+                                                Dear ${object.pilote_id.name},<br/><br/>
+                                                Une Nouvelle Constat a ete affecter pour vous pouvez la voire d'ici
+                                                <br/>
+                                                <div style="margin: 16px 0px 16px 0px;">
+                                                    <a href="${object.creer_affectation_pilote_url()}"
+                                                        style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:25px;">
+                                                        voire le constat Affectee
+                                                    </a>
+                                                </div>
+                                            <br/><br/>
+                                                Thanks,
+                                                % if user.signature:
+                                                    <br/>
+                                                    ${user.signature | safe}
+                                                % endif
+                                            </div>
+                                        </td></tr>
+                                        <tr><td style="text-align:center;">
+                                        <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;"/>
+                                        </td></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>         
+            </field>
+        </record>
+
+
+
+    </data>
+
+
+</odoo>

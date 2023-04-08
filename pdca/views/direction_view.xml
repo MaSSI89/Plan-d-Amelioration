@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pdca_direction_view_form" model="ir.ui.view">
+        <field name="name">pdca.direction.view.form</field>
+        <field name="model">pdca.direction</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                    <group >
+                        <field name="directeur" />
+                        <field name="referent" />
+                        <field name="les_unites_ids" />
+                    </group>
+                    <group >
+                        <field name="cree_le" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pdca_direction_view_tree" model="ir.ui.view">
+        <field name="name">pdca.direction.view.tree</field>
+        <field name="model">pdca.direction</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+                <field name="directeur" />
+                <field name="referent" />
+                <field name="cree_le" />
+                <field name="les_unites_ids" />
+                <field name="les_actions_ids" />
+                <field name="les_employes_ids" />
+            </tree>
+        </field>
+    </record>
+    
+    <record id="pdca_direction_action" model="ir.actions.act_window">
+        <field name="name">Directions</field>
+        <field name="res_model">pdca.direction</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="pdca_root_menu" name="Plan Damelioration" sequence="10"/>
+    <menuitem id="pdca_direction_menu" name="Directions"
+                 action="pdca_direction_action" parent="pdca_root_menu" sequence="10"/>
+    
+    <menuitem id="pdca_unite_menu" name="Les Unites" action="pdca_unite_action"
+                parent="pdca_root_menu" sequence="20"/>
+
+</odoo>

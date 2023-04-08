@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pdca_processus_view_form" model="ir.ui.view">
+        <field name="name">pdca.processus.view.form</field>
+        <field name="model">pdca.processus</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="directeur_id" />
+                        <field name="unite_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pdca_processus_view_tree" model="ir.ui.view">
+        <field name="name">pdca.processus.view.tree</field>
+        <field name="model">pdca.processus</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" />
+                <field name="directeur_id" />
+                <field name="unite_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="pdca_processus_action" model="ir.actions.act_window">
+        <field name="name">Processus</field>
+        <field name="res_model">pdca.processus</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="pdca_processus_menu" name="Processus"
+        action="pdca_processus_action" parent="pdca_root_menu"
+        sequence="30"/>
+
+</odoo>
